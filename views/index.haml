@@ -5,7 +5,8 @@
   %body
     %form{action: "", method: :post}
       %p
-        %textarea{name: "circles"}
+        %textarea{name: "circles", row:20, cols:80}
+          [{"label":"cerchio1", "x":0, "y":0, "size":"0.5", "radius":267.5},{"label":"cerchio2", "x":0, "y":0, "size":"0.5", "radius":241.5},{"label":"cerchio3", "x":0, "y":0, "size":"0.5", "radius":218},{"label":"cerchio4", "x":0, "y":0, "size":"0.5", "radius":213.5}]
       %p
         H (cm)
         %input{type: :text, name: "custom_size[]", value: 540}
@@ -13,4 +14,5 @@
         L (cm)
         %input{type: :text, name: "custom_size[]", value: 540}
       %p
-        %button{type: :submit, value: "generate"}
+        %button{type: :submit}
+          generate
