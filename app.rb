@@ -1,10 +1,19 @@
 require_relative "./circle.rb"
 require 'sinatra'
+require 'haml'
 
-put  '/' do
-  "Hello World!"
+post  '/' do
+  x_size = params[:custom_size][0].to_f.send(:cm)
+  y_size = params[:custom_size][1].to_f.send(:cm)
+  custom_size = [x_size, y_size]
+  circles = JSON.parse(params["circles"])
+  circle = Circle.new(custom_size: custom_size, circle_data: circles )
+  content_type 'application/pdf'
+  send_file circle.file_path
+
   #http://stackoverflow.com/questions/18621713/sinatra-prawn-example
 end
+
 get "/" do
   custom_size = [540.send(:cm), 540.send(:cm)]
   circles = [
@@ -39,9 +48,6 @@ get "/" do
       {label:"cerchio30", x:0, y:0, size:0.3, radius:13.31184421328075},
       {label:"cerchio31", x:0, y:0, size:0.3, radius:6.65592210664037}
   ]
-  circle = Circle.new(custom_size: custom_size, circle_data: circles )
-  content_type 'application/pdf'
-  send_file circle.file_path
+  haml :index
 end
-
 

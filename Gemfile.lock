@@ -1,6 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    haml (4.0.7)
+      tilt
     pdf-core (0.7.0)
     prawn (2.2.2)
       pdf-core (~> 0.7.0)
@@ -19,6 +21,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  haml
   prawn
   sinatra
 

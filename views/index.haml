@@ -1,0 +1,16 @@
+%html
+  %head
+    %title
+      Circle Generator
+  %body
+    %form{action: "", method: :post}
+      %p
+        %textarea{name: "circles"}
+      %p
+        H (cm)
+        %input{type: :text, name: "custom_size[]", value: 540}
+      %p
+        L (cm)
+        %input{type: :text, name: "custom_size[]", value: 540}
+      %p
+        %button{type: :submit, value: "generate"}

@@ -16,8 +16,8 @@ class Circle
       y_center_offset = custom_size[1] / 2
       circle_data.each do |c|
         stroke do
-          self.line_width = c[:size].send(:cm)
-          circle [x_center_offset + c[:x], y_center_offset + c[:y]], c[:radius].send(:cm)
+          self.line_width = c["size"].to_f.send(:cm)
+          circle [x_center_offset + c["x"].to_f, y_center_offset + c["y"].to_f], c["radius"].to_f.send("cm")
         end
       end
     end
