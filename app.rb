@@ -2,7 +2,7 @@ require_relative "./circle.rb"
 require 'sinatra'
 require 'haml'
 require "rubygems"
-require 'rmagick'
+require 'PMagick'
 
 post  '/' do
   x_size = params[:custom_size][0].to_f.send(:cm)
@@ -13,7 +13,7 @@ post  '/' do
   content_type 'application/pdf'
 
   if params[:format] ==  "jpg"
-    pdf = Magick::ImageList.new(circle.file_path)
+    pdf = RMagick::ImageList.new(circle.file_path)
     prefix = 'circle'
     suffix = '.jpg'
     file_path = Tempfile.new [prefix, suffix], "./tmp"
