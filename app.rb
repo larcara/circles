@@ -1,7 +1,7 @@
 require_relative "./circle.rb"
 require 'sinatra'
 require 'haml'
-require 'RMagick'
+require 'rmagick'
 
 post  '/' do
   x_size = params[:custom_size][0].to_f.send(:cm)

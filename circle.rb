@@ -1,7 +1,7 @@
 require "prawn"
 require "prawn/measurement_extensions"
 require "json"
-require "rmagick"
+
 
 
 class Circle
