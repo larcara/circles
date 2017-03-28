@@ -3,5 +3,5 @@ source 'https://rubygems.org'
 gem "sinatra"
 gem "prawn"
 gem 'haml'
-gem "rmagick", "2.16", :require => "RMagick"
+gem "rmagick", :require => "RMagick"
 
