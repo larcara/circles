@@ -13,12 +13,9 @@ post  '/' do
   content_type 'application/pdf'
 
   if params[:format] ==  "jpg"
-    pdf = Magick::Image.new(circle.file_path)
-    prefix = 'circle'
-    suffix = '.jpg'
-    file_path = Tempfile.new [prefix, suffix], "./tmp"
-    pdf.write(file_path)
-    send_file file_path
+    im = Magick::Image.read(circle.file_path)
+    im.write(circle.file_path+ ".jpg")
+    send_file circle.file_path+ ".jpg"
   else
     send_file circle.file_path
   end
