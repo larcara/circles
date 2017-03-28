@@ -10,15 +10,23 @@ post  '/' do
   custom_size = [x_size, y_size]
   circles = JSON.parse(params["circles"])
   circle = Circle.new(custom_size: custom_size, circle_data: circles )
-  content_type 'application/pdf'
+
 
   if params[:format] ==  "jpg"
-    bin = File.open(circle.file_path, 'r'){ |file| file.read }
-    image = Magick::ImageList.new
-    img = image.from_blob(bin)
-    img.write(circle.file_path+ ".jpg")
-    send_file circle.file_path+ ".jpg"
+    content_type 'image/jpeg'
+    #bin = File.open(circle.file_path, 'r'){ |file| file.read }
+    prefix = 'circle'
+    suffix = '.jpg'
+    file_path = Tempfile.new [prefix, suffix], "./tmp"
+
+    img = Magick::ImageList.new(circle.file_path.path)
+    #image = img.from_blob(circle.file_path)
+    #img = image.from_blob(circle.file_path)
+
+    img.write(file_path)
+    send_file file_path
   else
+    content_type 'application/pdf'
     send_file circle.file_path
   end
   #http://stackoverflow.com/questions/18621713/sinatra-prawn-example
