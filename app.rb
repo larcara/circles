@@ -1,6 +1,7 @@
 require_relative "./circle.rb"
 require 'sinatra'
 require 'haml'
+require "rubygems"
 require 'RMagick'
 
 post  '/' do
