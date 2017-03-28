@@ -13,21 +13,22 @@ post  '/' do
 
 
   if params[:format] ==  "jpg"
-    content_type 'image/jpeg'
+    #content_type 'image/jpeg'
     #bin = File.open(circle.file_path, 'r'){ |file| file.read }
     prefix = 'circle'
     suffix = '.jpg'
     file_path = Tempfile.new [prefix, suffix], "./tmp"
-
     img = Magick::ImageList.new(circle.file_path.path)
     #image = img.from_blob(circle.file_path)
     #img = image.from_blob(circle.file_path)
 
     img.write(file_path)
-    send_file file_path
+    send_file(file, :disposition => 'attachment', :filename => File.basename(file_path))
+
   else
-    content_type 'application/pdf'
-    send_file circle.file_path
+    #content_type 'application/pdf'
+    send_file(file, :disposition => 'attachment', :filename => File.basename(circle.file_path))
+    #send_file circle.file_path
   end
   #http://stackoverflow.com/questions/18621713/sinatra-prawn-example
 end
