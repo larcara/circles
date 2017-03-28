@@ -13,8 +13,10 @@ post  '/' do
   content_type 'application/pdf'
 
   if params[:format] ==  "jpg"
-    im = Magick::Image.read(circle.file_path)
-    im.write(circle.file_path+ ".jpg")
+    bin = File.open(circle.file_path, 'r'){ |file| file.read }
+    image = Magick::ImageList.new
+    img = image.from_blob(bin)
+    img.write(circle.file_path+ ".jpg")
     send_file circle.file_path+ ".jpg"
   else
     send_file circle.file_path
