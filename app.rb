@@ -23,11 +23,11 @@ post  '/' do
     #img = image.from_blob(circle.file_path)
 
     img.write(file_path)
-    send_file(file, :disposition => 'attachment', :filename => File.basename(file_path))
+    send_file(file_path, :disposition => 'attachment', :filename => File.basename(file_path))
 
   else
     #content_type 'application/pdf'
-    send_file(file, :disposition => 'attachment', :filename => File.basename(circle.file_path))
+    send_file(circle.file_path, :disposition => 'attachment', :filename => File.basename(circle.file_path))
     #send_file circle.file_path
   end
   #http://stackoverflow.com/questions/18621713/sinatra-prawn-example
