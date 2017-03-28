@@ -13,7 +13,7 @@ post  '/' do
   content_type 'application/pdf'
 
   if params[:format] ==  "jpg"
-    pdf = RMagick::ImageList.new(circle.file_path)
+    pdf = Magick::ImageList.new(circle.file_path)
     prefix = 'circle'
     suffix = '.jpg'
     file_path = Tempfile.new [prefix, suffix], "./tmp"
