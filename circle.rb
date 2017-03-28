@@ -1,7 +1,7 @@
 require "prawn"
 require "prawn/measurement_extensions"
 require "json"
-
+require "rmagick"
 
 
 class Circle
@@ -17,6 +17,7 @@ class Circle
       circle_data.each do |c|
         stroke do
           self.line_width = c["size"].to_f.send(:cm)
+          self.stroke_color = c["color"]  if c["color"]
           circle [x_center_offset + c["x"].to_f.send("cm"), y_center_offset + c["y"].to_f.send("cm")], c["radius"].to_f.send("cm")
         end
       end

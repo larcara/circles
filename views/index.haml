@@ -14,5 +14,10 @@
         L (cm)
         %input{type: :text, name: "custom_size[]", value: 540}
       %p
+        Format
+        %select{name: "format", :multiple => false}
+          %option{value: 'pdf', selected: true} PDF
+          %option{value: 'jpg'} JPG
+      %p
         %button{type: :submit}
           generate

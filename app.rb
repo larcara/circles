@@ -1,6 +1,7 @@
 require_relative "./circle.rb"
 require 'sinatra'
 require 'haml'
+require 'RMagick'
 
 post  '/' do
   x_size = params[:custom_size][0].to_f.send(:cm)
@@ -9,8 +10,17 @@ post  '/' do
   circles = JSON.parse(params["circles"])
   circle = Circle.new(custom_size: custom_size, circle_data: circles )
   content_type 'application/pdf'
-  send_file circle.file_path
 
+  if params[:format] ==  "jpg"
+    pdf = Magick::ImageList.new(circle.file_path)
+    prefix = 'circle'
+    suffix = '.jpg'
+    file_path = Tempfile.new [prefix, suffix], "./tmp"
+    pdf.first.write(file_path)
+    send_file file_path
+  else
+    send_file circle.file_path
+  end
   #http://stackoverflow.com/questions/18621713/sinatra-prawn-example
 end
 
