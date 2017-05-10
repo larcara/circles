@@ -5,14 +5,16 @@ require "rubygems"
 require 'RMagick'
 
 post  '/' do
-  x_size = params[:custom_size][0].to_f.send(:cm)
-  y_size = params[:custom_size][1].to_f.send(:cm)
+  x_size = params[:custom_size][0].to_i
+  y_size = params[:custom_size][1].to_i
+  um = params[:um]
+  format = params[:format]
   custom_size = [x_size, y_size]
   circles = JSON.parse(params["circles"])
-  circle = Circle.new(custom_size: custom_size, circle_data: circles )
+  circle = Circle.new(custom_size: custom_size, circle_data: circles, um: um, format: format )
 
-
-  if params[:format] ==  "jpg"
+=begin
+  if format ==  "jpg"
     #content_type 'image/jpeg'
     #bin = File.open(circle.file_path, 'r'){ |file| file.read }
     prefix = 'circle'
@@ -27,9 +29,11 @@ post  '/' do
 
   else
     #content_type 'application/pdf'
-    send_file(circle.file_path, :disposition => 'attachment', :filename => File.basename(circle.file_path))
+
     #send_file circle.file_path
   end
+=end
+  send_file(circle.file_path, :disposition => 'attachment', :filename => File.basename(circle.file_path))
   #http://stackoverflow.com/questions/18621713/sinatra-prawn-example
 end
 

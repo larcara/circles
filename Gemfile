@@ -5,3 +5,4 @@ gem "prawn"
 gem 'haml'
 gem "rmagick", :require => "RMagick"
 
+

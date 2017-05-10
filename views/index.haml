@@ -14,10 +14,23 @@
         L (cm)
         %input{type: :text, name: "custom_size[]", value: 540}
       %p
+        dpi
+        %input{type: :text, name: "dpi", value: 72}
+      %p
+        UM
+        %select{name: "um", :multiple => false}
+          %option{value: 'cm', selected: true} CM
+          %option{value: 'in'} INCH
+          %option{value: 'px'} pixel
+      %p
         Format
         %select{name: "format", :multiple => false}
-          %option{value: 'pdf', selected: true} PDF
-          %option{value: 'jpg'} JPG
+          %option{value: 'png', selected: true} PNG
+          %option{value: 'pdf' } PDF
+          %option{value: 'jpg' } JPG
+          %option{value: 'tif' } TIF
+          %option{value: 'gif' } GIF
+
       %p
         %button{type: :submit}
           generate
